@@ -1,0 +1,1 @@
+curl -X POST -d "VITE_COMPANY=CoolCalcHVAC&VITE_USERNAME=CoolCalc@gmail.com&VITE_PASSWORD=SilverLining" http://localhost:8000/save-env
