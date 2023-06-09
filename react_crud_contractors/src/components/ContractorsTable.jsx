@@ -1,7 +1,17 @@
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { fetchContractors } from "../features/contractors/contractorSlice";
+import { useEffect } from "react";
 
 const ContractorsTable = () => {
+    const dispatch = useDispatch();
+    
+    useEffect(() => {
+        dispatch(fetchContractors())
+    }, [dispatch])
+    
     const contractors = useSelector( state => state.contractors.list )
+
+    console.log(contractors)
 
     return (
         <div className="p-4">
@@ -14,17 +24,21 @@ const ContractorsTable = () => {
                     <th className="py-2 px-4 border-b">Name</th>
                     <th className="py-2 px-4 border-b">Last name</th>
                     <th className="py-2 px-4 border-b">Phone Number</th>
+                    <th className="py-2 px-4 border-b">Email</th>
                     <th className="py-2 px-4 border-b">Address</th>
+                    <th className="py-2 px-4 border-b">Actions</th>
                 </tr>
                 </thead>
                 <tbody>
-                {contractors.map((contratista) => (
-                    <tr key={contratista.id}>
-                    <td className="py-2 px-4 border-b">{contratista.id}</td>
-                    <td className="py-2 px-4 border-b">{contratista.name}</td>
-                    <td className="py-2 px-4 border-b">{contratista.last_name}</td>
-                    <td className="py-2 px-4 border-b">{contratista.phone_number}</td>
-                    <td className="py-2 px-4 border-b">{contratista.direccion}</td>
+                {contractors.map((contractor) => (
+                    <tr key={contractor.id}>
+                    <td className="py-2 px-4 border-b">{contractor.id}</td>
+                    <td className="py-2 px-4 border-b">{contractor.name}</td>
+                    <td className="py-2 px-4 border-b">{contractor.last_name}</td>
+                    <td className="py-2 px-4 border-b">{contractor.phone}</td>
+                    <td className="py-2 px-4 border-b">{contractor.mail}</td>
+                    <td className="py-2 px-4 border-b">{contractor.address}</td>
+                    <td className="py-2 px-4 border-b">Editar/Eliminar</td>
                     </tr>
                 ))}
                 </tbody>

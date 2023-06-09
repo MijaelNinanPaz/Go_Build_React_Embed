@@ -3,11 +3,7 @@ import { createSlice } from '@reduxjs/toolkit';
 export const contractorSlice = createSlice({
     name: 'contractors',
     initialState: {
-        list: [
-            { id: 1, name: 'David', last_name: 'Copperfield', phone_number: '123456789', direccion: 'Dirección 1' },
-            { id: 2, name: 'Benjamin', last_name: 'Franklin', phone_number: '987654321', direccion: 'Dirección 2' },
-            { id: 3, name: 'Jimmy', last_name: 'Hendrix', phone_number: '112233445', direccion: 'Dirección 3' },
-        ],
+        list: [],
     },
     reducers: {
         setContractors: (state, action) => {
@@ -24,3 +20,28 @@ export const contractorSlice = createSlice({
 
 export const { setContractors, addContractor, updateContractor } = contractorSlice.actions
 export default contractorSlice.reducer
+
+const url = import.meta.env.VITE_URL_BACKEND_CONTRACTORS;
+
+export const fetchContractors = () => (dispatch) => {
+    fetch(url)
+    .then(response => response.json())
+    .then(data => {
+        dispatch(setContractors(data))
+    })
+}
+
+export const postContractor = (data) => (dispatch) => {
+    fetch(url, {
+        method: 'POST',
+        body: JSON.stringify(data),
+        headers:{
+            'Content-Type': 'application/json'
+        }
+    }).then(res => res.json())
+    .catch(error => console.error('Error: ', error))
+    .then(response => {
+        dispatch(addContractor(response));
+        console.log(response, "response post")
+    });
+}

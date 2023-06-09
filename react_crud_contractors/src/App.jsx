@@ -8,9 +8,8 @@ function App() {
     <div className="container mx-auto mt-20">
       <Header />
       <div className="mt-12">
-      <AddContractor />
-      <ContractorsTable/>
-      <ContractorsTable/>
+        <AddContractor />
+        <ContractorsTable/>
       </div>
     </div>
   )
