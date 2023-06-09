@@ -1,0 +1,16 @@
+steps:
+install dependencies:
+    npm install --save-dev tailwindcss postcss autoprefixer
+
+inicializar tailwind:
+    npx tailwindcss init -p
+
+in tailwind.config.js update content property:
+      content: [
+    "./src/**/*.{js,jsx,ts,tsx}"
+  ],
+
+adding tailwind directives in to css, /src/index.css:
+    @tailwind base;
+    @tailwind components;
+    @tailwind utilities;
