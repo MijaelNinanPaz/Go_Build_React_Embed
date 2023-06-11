@@ -1,6 +1,7 @@
 import AddContractor from "./components/AddContractor"
 import ContractorsTable from "./components/ContractorsTable"
 import Header from "./components/Header"
+import ProvidersTable from "./components/ProvidersTable"
 
 function App() {
 
@@ -9,7 +10,8 @@ function App() {
       <Header />
       <div className="mt-12">
         <AddContractor />
-        <ContractorsTable/>
+        {/* <ContractorsTable /> */}
+        <ProvidersTable />
       </div>
     </div>
   )
