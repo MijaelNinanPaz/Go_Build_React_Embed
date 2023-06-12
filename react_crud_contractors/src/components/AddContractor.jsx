@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
 import { postContractor } from "../features/contractors/contractorSlice";
+// import Maps from "./Maps/Map";
 
 const AddContractor = () => {
     const [showModal, setShowModal] = useState(false);
@@ -124,6 +125,9 @@ const AddContractor = () => {
                             onChange={handleInputChange}
                             />
                         </div> */}
+                        
+                            {/* <Maps /> */}
+
                         <div className="text-right">
                             <button
                                 className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
