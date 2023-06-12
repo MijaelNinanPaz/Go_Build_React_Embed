@@ -1,7 +1,7 @@
 import AddContractor from "./components/AddContractor"
 import ContractorsTable from "./components/ContractorsTable"
 import Header from "./components/Header"
-import ProvidersTable from "./components/ProvidersTable"
+// import ProvidersTable from "./components/ProvidersTable"
 
 function App() {
 
