@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { deleteContractor, setContractors } from "../features/contractors/contractorSlice";
 import { fetchData } from "../services/fetchData";
 import { Suspense } from "react";
-import ViewContractorMap from "./ViewContractorMap";
+// import ViewContractorMap from "./ViewContractorMap";
 import UpdateContractor from "./UpdateContractor";
 
 const url = import.meta.env.VITE_URL_BACKEND_CONTRACTORS;
