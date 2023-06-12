@@ -127,8 +127,9 @@ const Maps = () => {
         };
     
         // Cargar el script de la API de Google Maps
+        const gmpsKey = import.meta.env.VITE_GMPS_KEY;
         const script = document.createElement('script');
-        script.src = `https://maps.googleapis.com/maps/api/js?key=AIzaSyCeNpPvllTH4X3F_DERmItPxWOLNwNI9LI&callback=initMap&libraries=places&v=weekly`;
+        script.src = `https://maps.googleapis.com/maps/api/js?key=${gmpsKey}&callback=initMap&libraries=places&v=weekly`;
         script.defer = true;
         document.head.appendChild(script);
 
