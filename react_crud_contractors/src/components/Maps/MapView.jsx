@@ -3,11 +3,11 @@ import { useEffect } from 'react';
 //importar map.css
 import './map.css';
 
-const Maps = ({ setAddress }) => {
+const MapView = ({ lat, lng }) => {
     useEffect(() => {
         const initMap = () => {
             const map = new window.google.maps.Map(document.getElementById('map'), {
-                center: { lat: 40.749933, lng: -73.98633 },
+                center: { lat, lng },
                 zoom: 13,
                 mapTypeControl: false,
             });
@@ -60,36 +60,6 @@ const Maps = ({ setAddress }) => {
                 infowindowContent.children['place-name'].textContent = place.name;
                 infowindowContent.children['place-address'].textContent = place.formatted_address;
                 infowindow.open(map, marker);
-
-                //TESTTTTTTT GEOJSON
-                // Capture los datos de la ubicación seleccionada y envíelos como GeoJSON
-                // const locationData = {
-                //     type: "Feature",
-                //     geometry: {
-                //         type: "Point",
-                //         coordinates: [
-                //             place.geometry.location.lat(),
-                //             place.geometry.location.lng()
-                //         ]
-                //     },
-                //     properties: {
-                //         name: place.name,
-                //         address: place.formatted_address
-                //     }
-                // };
-
-                const locationData = {
-                        type: "Point",
-                        coordinates: [
-                            place.geometry.location.lat(),
-                            place.geometry.location.lng()
-                        ]
-                    };
-
-                //logic to send geoJSON
-                console.log(locationData);
-                setAddress(locationData);
-                //END TESTTTTTTT GEOJSON
             });
         
             function setupClickListener(id, types) {
@@ -193,6 +163,6 @@ const Maps = ({ setAddress }) => {
     );
 };
 
-export default Maps
+export default MapView
 
 

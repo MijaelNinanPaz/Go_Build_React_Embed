@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { useDispatch } from "react-redux";
-import { postContractor } from "../features/contractors/contractorSlice";
+import { putContractor } from "../features/contractors/contractorSlice";
 import Maps from "./Maps/Map"
 
-const AddContractor = () => {
+const UpdateContractor = ({ contractor }) => {
     const [showModal, setShowModal] = useState(false);
     const [contractorData, setContractorData] = useState({
         name: "",
@@ -11,6 +11,14 @@ const AddContractor = () => {
         phone: "",
         mail: ""
     });
+    if(contractor) {
+        setContractorData({
+            name: contractor.name,
+            last_name: contractor.last_name,
+            phone: contractor.phone,
+            mail: contractor.mail
+        });
+    }
     const [address, setAddress] = useState(null)
     // const loading = useSelector( state => state.contractors.loadingPost )
 
@@ -30,7 +38,7 @@ const AddContractor = () => {
             address
         }
         console.log(newContractor);
-        dispatch(postContractor(newContractor));
+        dispatch(putContractor(newContractor));
 
         setShowModal(false);
     };
@@ -38,7 +46,7 @@ const AddContractor = () => {
     return (
         <div>
         <button
-            className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded"
+            className="bg-yellow-500 hover:bg-yellow-700 text-white font-bold py-2 px-4 rounded"
             onClick={() => setShowModal(true)}>
             Add Contractor
         </button>
@@ -134,4 +142,4 @@ const AddContractor = () => {
     );
 };
 
-export default AddContractor;
+export default UpdateContractor;
