@@ -1,6 +1,5 @@
 
 import { useEffect } from 'react';
-//importar map.css
 import './map.css';
 
 const Maps = ({ setAddress }) => {

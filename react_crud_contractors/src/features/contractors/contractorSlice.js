@@ -7,7 +7,9 @@ export const contractorSlice = createSlice({
         loadingPost: false,
         errrorPost: null,
         loadingPut: false,
-        errrorPut: null
+        errrorPut: null,
+        loadingDelete: false,
+        errrorDelete: null
     },
     reducers: {
         setContractors: (state, action) => {
@@ -35,10 +37,10 @@ export const contractorSlice = createSlice({
             state.errrorPut = action.payload;
         },
         setLoadingDelete: (state, action) => {
-            state.loadingPut = action.payload;
+            state.loadingDelete = action.payload;
         },
         setErrorDelete: (state, action) => {
-            state.errrorPut = action.payload;
+            state.errrorDelete = action.payload;
         }
     }
 })
@@ -61,25 +63,23 @@ export default contractorSlice.reducer
 const url = import.meta.env.VITE_URL_BACKEND_CONTRACTORS;
 
 //GET request
-// export const fetchContractors = () => (dispatch) => {
-//     dispatch(setLoadingFetch(true))
-//     const abortController = new AbortController();
-//     fetch( url, {
-//         method: 'GET',
-//         signal: abortController.signal,
-//         headers: {
-//             Accept: 'application/json',
-//             // 'accept': 'application/json',
-//             'Content-Type': 'application/json',
-//             // 'Authorization': `Bearer ${token}`
-//         }
-//         // body: JSON.stringify({})
-//     })
-//     .then( response => response.json())
-//     .then( data => dispatch(setContractors(data)))
-//     .catch( error => dispatch(setErrorFetch(error)))
-//     .finally(() => dispatch(setLoadingFetch(false)))
-// }
+export const fetchContractors = () => (dispatch) => {
+    const abortController = new AbortController();
+    fetch( url, {
+        method: 'GET',
+        signal: abortController.signal,
+        headers: {
+            Accept: 'application/json',
+            // 'accept': 'application/json',
+            'Content-Type': 'application/json',
+            // 'Authorization': `Bearer ${token}`
+        }
+        // body: JSON.stringify({})
+    })
+    .then( response => response.json())
+    .then( data => dispatch(setContractors(data)))
+    .catch( error => console.log(error))
+}
 
 //POST
 export const postContractor = (data) => (dispatch) => {
@@ -106,10 +106,7 @@ export const postContractor = (data) => (dispatch) => {
 //PUT
 export const putContractor = (data) => (dispatch) => {
     dispatch(setLoadingPut(true))
-    let currentUrl = url
-    if (data.prototype.hasOwnProperty.call('id')) {
-        currentUrl += "/" + data.id
-    }
+    let currentUrl = url + "/" + data.id
     fetch(currentUrl, {
         method: 'PUT',
         body: JSON.stringify(data),
@@ -123,7 +120,7 @@ export const putContractor = (data) => (dispatch) => {
     })
     .then(response => {
         dispatch(updateContractor(response));
-        console.log(response, "response post")
+        console.log(response, "response put")
     })
     .finally(() => dispatch(setLoadingPut(false)))
 }
