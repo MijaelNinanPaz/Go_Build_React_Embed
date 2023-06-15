@@ -1,7 +1,14 @@
 import { useDispatch, useSelector } from "react-redux";
-import { deleteContractor, fetchContractors, setContractors } from "../features/contractors/contractorSlice";
-import { fetchData } from "../services/fetchData";
-import { Suspense, useEffect, useState } from "react";
+import {
+    deleteContractor,
+    fetchContractors,
+    // setContractors
+} from "../features/contractors/contractorSlice";
+// import { fetchData } from "../services/fetchData";
+import {
+    // Suspense,
+    useEffect,
+    useState } from "react";
 import Modal from 'react-modal';
 import ViewContractorMap from "./ViewContractorMap";
 import UpdateContractor from "./UpdateContractor";
